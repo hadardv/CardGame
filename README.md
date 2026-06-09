@@ -22,34 +22,6 @@ https://github.com/user-attachments/assets/61e61dd5-5869-41be-b7a5-71016d15a038
 
 ---
 
-## 📱 Screenshots
-
-### 🧭 Welcome Screen
-Portrait  
-<img width="323" alt="1" src="https://github.com/user-attachments/assets/d14fbd31-f7f8-4274-9e99-87ce3906e2c3" />
-
-Landscape – Light & Dark  
-<img width="642" alt="2" src="https://github.com/user-attachments/assets/ae02764f-0136-45e5-b13e-921d2f390917" />
-<img width="636" alt="3" src="https://github.com/user-attachments/assets/f86cd3ad-cdfe-4121-a525-11cf175894c9" />
-
----
-
-### 🃏 Game Screen  
-Light & Dark  
-<img width="642" alt="4" src="https://github.com/user-attachments/assets/01e870cb-ecef-48e6-b4ad-5092a34d8ede" />
-<img width="638" alt="5" src="https://github.com/user-attachments/assets/0bafa928-632e-4733-975a-13f50090bad2" />
-
----
-
-### 🏆 Result Screen  
-Victory with confetti 🎉  
-<img width="633" alt="6" src="https://github.com/user-attachments/assets/8e94957f-050c-4b2b-ac56-3b02d62bfc67" />
-
-Loss screen 😢  
-<img width="643" alt="7" src="https://github.com/user-attachments/assets/a4ede8b1-d7cd-44ae-bc22-d9fc9877f573" />
-
----
-
 ## 🧱 Built With
 
 - `UIKit` – Interface and interaction logic.
