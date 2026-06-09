@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game Controller-->
+        <scene sceneID="IkO-il-aWR">
+            <objects>
+                <viewController id="Yz7-eS-1EM" customClass="GameController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qgh-YN-tlg">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="MRp-c9-FcW" userLabel="Main Stack View">
+                                <rect key="frame" x="59" y="16" width="750" height="367.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-Z0-02K" userLabel="Player 1 Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="367.33333333333331"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0s-xv-J4c">
+                                                <rect key="frame" x="0.0" y="0.0" width="260" height="50.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="ndn-DG-M8H"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Player 1 Score">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KmR-sx-ZzT">
+                                                <rect key="frame" x="0.0" y="58.333333333333314" width="260" height="251"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8M4-BY-3at">
+                                                <rect key="frame" x="0.0" y="317.33333333333331" width="260" height="50"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Player 1">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8M4-BY-3at" firstAttribute="height" secondItem="d0s-xv-J4c" secondAttribute="height" id="Jvd-Gx-wNO"/>
+                                            <constraint firstItem="d0s-xv-J4c" firstAttribute="leading" secondItem="8M4-BY-3at" secondAttribute="leading" id="UrC-Vr-90e"/>
+                                            <constraint firstItem="KmR-sx-ZzT" firstAttribute="height" secondItem="8M4-BY-3at" secondAttribute="height" multiplier="5" id="zGN-qJ-ag5"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="lCv-of-dUT" userLabel="Buttons Stack View">
+                                        <rect key="frame" x="330" y="61.666666666666671" width="90" height="244.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3q9-bB-V9R">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="S9y-x5-lwX"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="vtF-Jy-gu2"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="stop.fill" catalog="system">
+                                                    <attributedString key="attributedTitle"/>
+                                                    <attributedString key="attributedSubtitle"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pauseButtonTapped:" destination="Yz7-eS-1EM" eventType="touchUpInside" id="HUf-mx-vY1"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9L-qm-jUk">
+                                                <rect key="frame" x="0.0" y="119.99999999999999" width="90" height="24.333333333333329"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Timer">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="485-7p-z0R">
+                                                <rect key="frame" x="0.0" y="204.33333333333331" width="90" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="Rw6-o0-tl2"/>
+                                                    <constraint firstAttribute="height" constant="40" id="iUj-dw-2lG"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Result">
+                                                            <attributes>
+                                                                <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="j2u-iD-XjX" kind="show" identifier="toResultVC" id="moO-w0-uoZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="3q9-bB-V9R" firstAttribute="centerX" secondItem="lCv-of-dUT" secondAttribute="centerX" id="I1N-1S-NAh"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IIF-zX-LQa" userLabel="Player 2 Stack View">
+                                        <rect key="frame" x="490" y="0.0" width="260" height="367.33333333333331"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mny-ml-0N1">
+                                                <rect key="frame" x="0.0" y="0.0" width="260" height="51"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Player 2 Score">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOk-0A-JV2">
+                                                <rect key="frame" x="0.0" y="56.000000000000014" width="260" height="255.33333333333337"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEe-ZJ-gUC">
+                                                <rect key="frame" x="0.0" y="316.33333333333331" width="260" height="51"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Player 2">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="3EC-Yw-PHa"/>
+                                            <constraint firstItem="BOk-0A-JV2" firstAttribute="leading" secondItem="IIF-zX-LQa" secondAttribute="leadingMargin" id="5ss-KN-zpn"/>
+                                            <constraint firstItem="BOk-0A-JV2" firstAttribute="height" secondItem="mny-ml-0N1" secondAttribute="height" multiplier="5" id="6CY-Rc-1s9"/>
+                                            <constraint firstItem="mny-ml-0N1" firstAttribute="height" secondItem="FEe-ZJ-gUC" secondAttribute="height" id="7au-t2-jXv"/>
+                                            <constraint firstItem="mny-ml-0N1" firstAttribute="leading" secondItem="FEe-ZJ-gUC" secondAttribute="leading" id="v30-5a-hGf"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gKt-Z0-02K" firstAttribute="top" secondItem="MRp-c9-FcW" secondAttribute="top" id="6B2-Q0-Nbn"/>
+                                    <constraint firstItem="IIF-zX-LQa" firstAttribute="width" secondItem="gKt-Z0-02K" secondAttribute="width" id="WYM-rZ-FAA"/>
+                                    <constraint firstItem="gKt-Z0-02K" firstAttribute="top" secondItem="IIF-zX-LQa" secondAttribute="top" id="dV0-Rr-EFU"/>
+                                    <constraint firstItem="lCv-of-dUT" firstAttribute="centerX" secondItem="MRp-c9-FcW" secondAttribute="centerX" id="mbv-64-f3B"/>
+                                    <constraint firstItem="lCv-of-dUT" firstAttribute="centerY" secondItem="MRp-c9-FcW" secondAttribute="centerY" id="xU0-w7-Op3"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" axis="horizontal" distribution="equalSpacing" spacing="10"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zCX-vY-hPN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MRp-c9-FcW" firstAttribute="leading" secondItem="zCX-vY-hPN" secondAttribute="leading" constant="59" id="8Bk-BJ-7UD">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="MRp-c9-FcW" firstAttribute="centerX" secondItem="qgh-YN-tlg" secondAttribute="centerX" id="XXX-zZ-QXR"/>
+                            <constraint firstItem="MRp-c9-FcW" firstAttribute="top" secondItem="qgh-YN-tlg" secondAttribute="top" constant="16" id="bcr-4Y-6BT"/>
+                            <constraint firstAttribute="bottom" secondItem="MRp-c9-FcW" secondAttribute="bottom" constant="16" id="oBT-8f-E2N"/>
+                        </constraints>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="8Bk-BJ-7UD"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="Le5-gV-iMG"/>
+                    <connections>
+                        <outlet property="countdownLabel" destination="y9L-qm-jUk" id="Odb-1P-s7o"/>
+                        <outlet property="leftCardImageView" destination="KmR-sx-ZzT" id="JZF-N5-vJ4"/>
+                        <outlet property="leftNameLabel" destination="8M4-BY-3at" id="MEF-TI-1Mw"/>
+                        <outlet property="leftScoreLabel" destination="d0s-xv-J4c" id="XV9-qM-iJe"/>
+                        <outlet property="pasueButton" destination="3q9-bB-V9R" id="5l4-Qh-aHu"/>
+                        <outlet property="resultButton" destination="485-7p-z0R" id="1e1-kU-495"/>
+                        <outlet property="rightCardImageView" destination="BOk-0A-JV2" id="fKr-nC-JBI"/>
+                        <outlet property="rightNameLabel" destination="FEe-ZJ-gUC" id="bEs-eH-uwJ"/>
+                        <outlet property="rightScoreLabel" destination="mny-ml-0N1" id="FTm-us-rFA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cm6-TF-036" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-589" y="189"/>
+        </scene>
+        <!--ResualtController-->
+        <scene sceneID="o3O-HN-5Kt">
+            <objects>
+                <viewController storyboardIdentifier="ResultVC" id="j2u-iD-XjX" userLabel="ResualtController" customClass="ResultViewController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1mm-hR-xtp">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-Bw-uaQ">
+                                <rect key="frame" x="276" y="135" width="300" height="123"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMT-3b-AgP">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="24.333333333333332"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Winner: Name">
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWC-jm-4c2">
+                                        <rect key="frame" x="0.0" y="49.333333333333343" width="300" height="24.333333333333329"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Score:  Int">
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq6-un-fnj">
+                                        <rect key="frame" x="0.0" y="98.666666666666657" width="300" height="24.333333333333329"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Back to Menu">
+                                                    <attributes>
+                                                        <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backToMenuTapped:" destination="j2u-iD-XjX" eventType="touchUpInside" id="Wii-YX-TTj"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="toWelcomeVC" id="Z3s-AS-bQD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="04Z-vf-JCp"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SVb-Fy-aPB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GSa-Bw-uaQ" firstAttribute="centerY" secondItem="1mm-hR-xtp" secondAttribute="centerY" id="dZd-vg-up9"/>
+                            <constraint firstItem="GSa-Bw-uaQ" firstAttribute="centerX" secondItem="1mm-hR-xtp" secondAttribute="centerX" id="qbh-Ml-kUT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T71-hr-yG5"/>
+                    <connections>
+                        <outlet property="backButton" destination="Pq6-un-fnj" id="3IU-B2-xKV"/>
+                        <outlet property="scoreLabel" destination="rWC-jm-4c2" id="iyr-ch-ghW"/>
+                        <outlet property="winnerLabel" destination="uMT-3b-AgP" id="jlw-F2-GgV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BvT-U2-3id" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115" y="-179"/>
+        </scene>
+        <!--WelcomeController-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeVC" id="BYZ-38-t0r" userLabel="WelcomeController" customClass="WelcomeController" customModule="CardGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4h3-6v-bGe">
+                                <rect key="frame" x="0.0" y="16" width="852" height="361"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gQF-dG-cTj" userLabel="West Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="361"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="earth_west_half" translatesAutoresizingMaskIntoConstraints="NO" id="DxB-k7-7dI">
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="331.66666666666669"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="500" id="hLz-rr-nMi">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="300"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="hLz-rr-nMi"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="hLz-rr-nMi"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkS-QH-pDT">
+                                                <rect key="frame" x="76" y="336.66666666666669" width="78.333333333333314" height="24.333333333333314"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="West Side">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="230" id="NkK-8O-Q3n">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="130"/>
+                                            </constraint>
+                                        </constraints>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="NkK-8O-Q3n"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="g4z-e0-RLr" userLabel="Button Stack View">
+                                        <rect key="frame" x="240" y="45.666666666666657" width="372" height="315.33333333333337"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31e-1b-Wgd">
+                                                <rect key="frame" x="96.3333333333333" y="0.0" width="179.66666666666663" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aD8-YF-YXt">
+                                                <rect key="frame" x="128.66666666666669" y="73" width="115" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="pEy-UB-d4l"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Insert Name">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="ChalkboardSE-Regular"/>
+                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="insertNameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ggn-ht-0Tc"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxV-bs-Rtx">
+                                                <rect key="frame" x="152.33333333333331" y="182" width="67.666666666666686" height="24.333333333333343"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Hi Name!">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-TN-wiN">
+                                                <rect key="frame" x="142.33333333333331" y="245.33333333333337" width="87.333333333333314" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="nlV-wk-5Vy"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Start Game">
+                                                            <attributes>
+                                                                <font key="NSFont" size="12" name="ChalkboardSE-Regular"/>
+                                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <attributedString key="attributedSubtitle"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="Yz7-eS-1EM" kind="show" identifier="toGameVC" id="n9o-qP-HfU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bGz-WN-RGY" userLabel="East Stack View">
+                                        <rect key="frame" x="622" y="0.0" width="230" height="361"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="earth_east_half" translatesAutoresizingMaskIntoConstraints="NO" id="2tO-Gv-1ZT" userLabel="East Image View">
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="331.66666666666669"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="LAS-TZ-vew">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="300"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="LAS-TZ-vew"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="LAS-TZ-vew"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN5-9S-W8F">
+                                                <rect key="frame" x="79" y="336.66666666666669" width="72" height="24.333333333333314"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="East Side">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name="ChalkboardSE-Regular"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gQF-dG-cTj" firstAttribute="width" secondItem="bGz-WN-RGY" secondAttribute="width" id="Dww-AA-Drf"/>
+                                    <constraint firstAttribute="height" constant="361" id="oek-WG-Y5H">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="400"/>
+                                    </constraint>
+                                    <constraint firstItem="g4z-e0-RLr" firstAttribute="centerX" secondItem="4h3-6v-bGe" secondAttribute="centerX" id="prd-jO-L5f"/>
+                                    <constraint firstAttribute="width" constant="852" id="wi0-pO-UMW">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="400"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="wi0-pO-UMW"/>
+                                        <exclude reference="oek-WG-Y5H"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" axis="horizontal" distribution="equalSpacing">
+                                    <mask key="constraints">
+                                        <include reference="wi0-pO-UMW"/>
+                                        <include reference="oek-WG-Y5H"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4h3-6v-bGe" secondAttribute="trailing" id="8eI-v6-CLc">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="4h3-6v-bGe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GTr-hG-y0E"/>
+                            <constraint firstItem="4h3-6v-bGe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a9Y-Rm-91R"/>
+                            <constraint firstItem="4h3-6v-bGe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="16" id="gaA-0v-TDb">
+                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                            </constraint>
+                            <constraint firstAttribute="bottom" secondItem="4h3-6v-bGe" secondAttribute="bottom" constant="16" id="jGq-XE-6km">
+                                <variation key="heightClass=regular-widthClass=compact" constant="300"/>
+                            </constraint>
+                            <constraint firstItem="4h3-6v-bGe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="y6g-7Y-OMi"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jGq-XE-6km"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="8eI-v6-CLc"/>
+                                <include reference="jGq-XE-6km"/>
+                                <include reference="gaA-0v-TDb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="cfX-VY-BZT"/>
+                    <connections>
+                        <outlet property="eastImageView" destination="2tO-Gv-1ZT" id="5FF-5Y-tax"/>
+                        <outlet property="greetingLabel" destination="UxV-bs-Rtx" id="lB0-di-n8O"/>
+                        <outlet property="insertButton" destination="aD8-YF-YXt" id="3jD-0t-1TZ"/>
+                        <outlet property="nameTextField" destination="31e-1b-Wgd" id="FCb-mm-zO1"/>
+                        <outlet property="startGameButton" destination="ibe-TN-wiN" id="6jg-Ht-FsR"/>
+                        <outlet property="westImageView" destination="DxB-k7-7dI" id="jjh-xz-dcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-589" y="-607"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" name="button_color"/>
+    <resources>
+        <image name="earth_east_half" width="584.33331298828125" height="1168.6666259765625"/>
+        <image name="earth_west_half" width="584" height="1168.6666259765625"/>
+        <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <namedColor name="button_color">
+            <color red="0.28600001335144043" green="0.62400001287460327" blue="0.88200002908706665" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
