@@ -26,6 +26,12 @@ class Ticker {
         }
     }
 
+    /// Restarts the timer without firing an immediate tick.
+    func resume() {
+        stop()
+        startTimer()
+    }
+
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
             self.callback()

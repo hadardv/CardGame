@@ -1,26 +1,24 @@
 import UIKit
-import CoreLocation
 import AVFoundation
 
 class GameController: UIViewController {
-    
+
     @IBOutlet weak var leftCardImageView: UIImageView!
     @IBOutlet weak var rightCardImageView: UIImageView!
-    
+
     @IBOutlet weak var leftNameLabel: UILabel!
     @IBOutlet weak var rightNameLabel: UILabel!
-    
+
     @IBOutlet weak var leftScoreLabel: UILabel!
     @IBOutlet weak var rightScoreLabel: UILabel!
-    
+
     @IBOutlet weak var pasueButton: UIButton!
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var resultButton: UIButton!
-    
-    var isInEast: Bool = true
+
+    var isInEast = true
     var playerScore = 0
     var pcScore = 0
-    var namesSet = false
 
     var playerDeck: [String] = []
     var pcDeck: [String] = []
@@ -33,35 +31,89 @@ class GameController: UIViewController {
     var roundCounter = 0
     let maxRounds = 10
     var gameEnded = false
-    var isPaused = false
-    
+    private var pausedByInterruption = false
+
     var backgroundMusicPlayer: AVAudioPlayer?
     var endEffectPlayer: AVAudioPlayer?
     var flipSoundPlayer: AVAudioPlayer?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        pasueButton.isHidden = true
+        resultButton.isHidden = true
+
+        dealCards()
+        setupNames()
+        updateScores()
+        loadSounds()
+        applyLabelColors()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appWillResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if !namesSet {
-            dealCards()
-            setupNames()
-            updateScores()
-            showBackCards() // Immediate start
+        guard ticker == nil, !gameEnded else { return }
 
-            resultButton.isEnabled = false
-            resultButton.alpha = 0.5
-            
-            loadSounds()
-            backgroundMusicPlayer?.play()
-            
-            ticker = Ticker(interval: 1.0) {
-                self.tick()
-            }
-            ticker.start()
+        showBackCards()
+        backgroundMusicPlayer?.play()
 
-            namesSet = true
-            
+        ticker = Ticker(interval: 1.0) { [weak self] in
+            self?.tick()
         }
+        ticker.start()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if isMovingFromParent || isBeingDismissed {
+            stopGameResources()
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            applyLabelColors()
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    /// Pauses the round timer and background music when the app leaves the foreground.
+    @objc private func appWillResignActive() {
+        guard !gameEnded, ticker != nil else { return }
+
+        pausedByInterruption = true
+        ticker.stop()
+        backgroundMusicPlayer?.pause()
+        countdownLabel.text = "\u{200B}"
+    }
+
+    /// Resumes the round timer and music when the app returns to the foreground.
+    @objc private func appDidBecomeActive() {
+        guard pausedByInterruption, !gameEnded else { return }
+
+        pausedByInterruption = false
+        ticker.resume()
+        backgroundMusicPlayer?.play()
+        updateCountdownLabel()
     }
 
     func setupNames() {
@@ -76,44 +128,48 @@ class GameController: UIViewController {
         }
     }
 
+    /// Shows card backs for 2 seconds before the next flip.
     func showBackCards() {
         leftCardImageView.image = UIImage(named: backCardImageName)
         rightCardImageView.image = UIImage(named: backCardImageName)
+        flipSoundPlayer?.play()
+
         countdown = 2
         showingBack = true
         updateCountdownLabel()
     }
 
     func loadSounds() {
-
         if let bgURL = Bundle.main.url(forResource: "background_music", withExtension: "mp3"),
            let endURL = Bundle.main.url(forResource: "end_effect", withExtension: "wav"),
            let flipURL = Bundle.main.url(forResource: "flip_card", withExtension: "wav") {
 
             do {
+                try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
+
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: bgURL)
                 backgroundMusicPlayer?.numberOfLoops = -1
                 backgroundMusicPlayer?.volume = 0.2
 
                 endEffectPlayer = try AVAudioPlayer(contentsOf: endURL)
                 endEffectPlayer?.volume = 1.0
-                
+
                 flipSoundPlayer = try AVAudioPlayer(contentsOf: flipURL)
                 flipSoundPlayer?.volume = 1.0
-                
             } catch {
                 print("Error loading sounds: \(error)")
             }
         }
     }
-    
+
+    /// Reveals the current cards, updates scores, and starts the 3-second display window.
     func showFrontCards() {
         guard currentIndex < playerDeck.count && currentIndex < pcDeck.count else {
-            ticker.stop()
-            countdownLabel.text = ""
+            endGame()
             return
         }
-        
+
         flipSoundPlayer?.play()
 
         let playerCard = playerDeck[currentIndex]
@@ -127,12 +183,12 @@ class GameController: UIViewController {
             rightCardImageView.image = UIImage(named: pcCard)
         }
 
-        let value1 = getCardValue(from: playerCard)
-        let value2 = getCardValue(from: pcCard)
+        let playerValue = getCardValue(from: playerCard)
+        let pcValue = getCardValue(from: pcCard)
 
-        if value1 > value2 {
+        if playerValue > pcValue {
             playerScore += 1
-        } else if value2 > value1 {
+        } else if pcValue > playerValue {
             pcScore += 1
         }
 
@@ -140,19 +196,9 @@ class GameController: UIViewController {
         currentIndex += 1
         roundCounter += 1
 
-        // Check if game should end
         if roundCounter >= maxRounds {
-            if playerScore != pcScore {
-                endGame()
-                return
-            }
-        }
-
-        if roundCounter > maxRounds {
-            if playerScore != pcScore {
-                endGame()
-                return
-            }
+            endGame()
+            return
         }
 
         countdown = 3
@@ -160,11 +206,11 @@ class GameController: UIViewController {
         updateCountdownLabel()
     }
 
+    /// Drives the 5-second flip cycle: 2 seconds on the back, 3 seconds on the front.
     func tick() {
         guard !gameEnded else { return }
         guard currentIndex < playerDeck.count else {
-            ticker.stop()
-            countdownLabel.text = ""
+            endGame()
             return
         }
 
@@ -181,7 +227,7 @@ class GameController: UIViewController {
     }
 
     func updateCountdownLabel() {
-        countdownLabel.text = countdown > 0 ? "\(countdown)" : "\u{200B}" // Invisible placeholder to prevent layout shift
+        countdownLabel.text = countdown > 0 ? "\(countdown)" : "\u{200B}"
     }
 
     func getCardValue(from cardName: String) -> Int {
@@ -210,71 +256,59 @@ class GameController: UIViewController {
         pcDeck = Array(allCards.suffix(26))
     }
 
-    @IBAction func pauseButtonTapped(_ sender: Any) {
+    /// Stops timers and audio when the game screen is dismissed.
+    private func stopGameResources() {
+        ticker?.stop()
+        backgroundMusicPlayer?.stop()
+    }
+
+    /// Ends the game after 10 rounds and navigates to the result screen.
+    func endGame() {
         guard !gameEnded else { return }
 
-            if isPaused {
-                ticker.start()
-                isPaused = false
-                pasueButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-                backgroundMusicPlayer?.play()
-                resultButton.isEnabled = false
-                resultButton.alpha = 0.5
-            } else {
-                ticker.stop()
-                isPaused = true
-                countdownLabel.text = "\u{200B}"
-                backgroundMusicPlayer?.pause()
-                resultButton.isEnabled = true
-                resultButton.alpha = 1.0
-                pasueButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-            }
-        
-    }
-
-    @IBAction func resultButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "toResults", sender: self)
-    }
-
-    func endGame() {
         gameEnded = true
-        ticker.stop()
+        pausedByInterruption = false
+        ticker?.stop()
         countdownLabel.text = ""
         backgroundMusicPlayer?.stop()
         endEffectPlayer?.play()
-        resultButton.isEnabled = true
-        resultButton.alpha = 1.0
+
+        performSegue(withIdentifier: "toResultVC", sender: self)
+    }
+
+    private func applyLabelColors() {
+        let color = UIColor.label
+        [leftNameLabel, rightNameLabel, leftScoreLabel, rightScoreLabel, countdownLabel].forEach {
+            $0?.textColor = color
+        }
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.landscapeLeft, .landscapeRight]
+        [.portrait, .landscapeLeft, .landscapeRight]
     }
 
     override var shouldAutorotate: Bool {
-        return true
+        true
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toResultVC",
-              let resultVC = segue.destination as? ResultViewController {
-               
-               let playerName = UserDefaults.standard.string(forKey: "playerName") ?? "Player"
-               
-               let winnerName: String
-               let winnerScore: Int
-               
-               if playerScore > pcScore {
-                   winnerName = playerName
-                   winnerScore = playerScore
-               } else if pcScore > playerScore {
-                   winnerName = "PC"
-                   winnerScore = pcScore
-               } else {
-                   winnerName = "It's a tie!"
-                   winnerScore = playerScore
-               }
+           let resultVC = segue.destination as? ResultViewController {
 
-               resultVC.configure(winnerName: winnerName, score: winnerScore)
-           }
+            let playerName = UserDefaults.standard.string(forKey: "playerName") ?? "Player"
+
+            let winnerName: String
+            let winnerScore: Int
+
+            if playerScore > pcScore {
+                winnerName = playerName
+                winnerScore = playerScore
+            } else {
+                winnerName = "PC"
+                winnerScore = pcScore
+            }
+
+            resultVC.configure(winnerName: winnerName, score: winnerScore)
+        }
     }
 }
