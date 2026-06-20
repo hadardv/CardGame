@@ -9,6 +9,8 @@ Two players — you and the PC — compete over **10 rounds**. Each round, both 
 
 ## Demo Video
 
+https://github.com/user-attachments/assets/66105a6c-f5b8-44d2-ac5e-c059898d2c99
+
 ---
 
 ## App Screens
@@ -55,14 +57,6 @@ Two players — you and the PC — compete over **10 rounds**. Each round, both 
 - **Flip sounds** on each card transition
 - **Win / end-game sounds** on the result screen
 - **Background music** during gameplay (stops when leaving the game or when the app backgrounds)
-
----
-
-## Screenshots
-
-| Welcome (Light) | Welcome (Dark) | Game        | Result      |
-| --------------- | -------------- | ----------- | ----------- |
-| _add image_     | _add image_    | _add image_ | _add image_ |
 
 ---
 
